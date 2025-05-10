@@ -1,4 +1,5 @@
-print("Script success")
+print("._.")
+wait(0.3) -- wait 0.3)
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
@@ -7,7 +8,7 @@ local Window = Fluent:CreateWindow({
     Title = "ZeZer Hub-Blox fruits",
     SubTitle = "by ZeZerover",
     TabWidth = 160,
-    Size = UDim2.fromOffset(580, 460),
+    Size = UDim2.fromOffset(460, 390),
     Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
@@ -21,6 +22,7 @@ local Tabs = {
     Players = Window:AddTab({ Title = "Local Players", Icon = "" }),
     Settingsfarm = Window:AddTab({ Title = "Settings farm", Icon = "" }),
     Autofarm = Window:AddTab({ Title = "Auto farm", Icon = "" }),
+    AutoRaid = Window:AddTab({ Title = "Auto Raid Fruits", Icon = "" }),
     Race = Window:AddTab({ Title = "Race V4", Icon = "" }),
     Tp = Window:AddTab({ Title = "Teleport", Icon = "" }),
     Settings = Window:AddTab({ Title = "Get Quest/Item", Icon = "" })
@@ -93,56 +95,89 @@ do
     Tabs.Shop:AddButton({
         Title = "Dragon Breath",
         Callback = function()
-        -- Function
+        local args = {
+	        "BlackbeardReward",
+	        "DragonClaw",
+	        "1"
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+        wait()
+        local args = {
+	        "BlackbeardReward",
+	        "DragonClaw",
+	        "2"
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
         end,
     })
 
     Tabs.Shop:AddButton({
         Title = "Superhuman",
         Callback = function()
-        -- Function
+        local args = {
+	        "BuySuperhuman"
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
         end,
     })
 
     Tabs.Shop:AddButton({
         Title = "Death Step",
         Callback = function()
-        -- Function
+        local args = {
+	        "BuyDeathStep"
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
         end,
     })
 
     Tabs.Shop:AddButton({
         Title = "Sharkman Karate",
         Callback = function()
-        -- Function
+        local args = {
+	        "BuySharkmanKarate"
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
         end,
     })
 
     Tabs.Shop:AddButton({
         Title = "Electric Claw",
         Callback = function()
-        -- Function
+        local args = {
+	        "BuyElectricClaw"
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
         end,
     })
 
     Tabs.Shop:AddButton({
-        Title = "Talon Dragon",
+        Title = "Dragon Talon",
         Callback = function()
-        -- Function
+        local args = {
+	        "BuyDragonTalon"
+        }   
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
         end,
     })
 
     Tabs.Shop:AddButton({
         Title = "Godhuman",
         Callback = function()
-        -- Function
+        local args = {
+	        "BuyGodhuman"
+        }   
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
         end,
     })
 
     Tabs.Shop:AddButton({
         Title = "Sanguine Art",
         Callback = function()
-        -- Function
+        local args = {
+	        "BuySanguineArt"
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
         end,
     })
 
@@ -172,7 +207,23 @@ do
         Callback = function()
             print("Coming Soon Update")
         end,
-    }) 
+    })
+    
+    local Toggle = Tabs.AutoRaid:AddToggle("Randoom Fruits", {Title = "Randoom Fruits", Default = false })
+
+    Toggle:OnChanged(function(args)
+        local args = {
+	        "Cousin",
+	        "Check"
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+        wait()
+        local args = {
+	        "Cousin",
+	        "Buy"
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+    end)
     
 
 
@@ -196,6 +247,30 @@ end
     Toggle:OnChanged(function()
         print("Hello")
     end)
+
+        Tabs.Players:AddButton({
+        Title = "Change Pirates",
+        Callback = function(args)
+        local args = {
+	        "SetTeam",
+	        "Pirates"
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+
+        end,
+    })
+
+        Tabs.Players:AddButton({
+        Title = "Change Marines",
+        Callback = function(args)
+        local args = {
+	        "SetTeam",
+	        "Marines"
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+
+        end,
+    })
 
     local Input = Tabs.Players:AddInput("Input", {
         Title = "Walkspeed",
